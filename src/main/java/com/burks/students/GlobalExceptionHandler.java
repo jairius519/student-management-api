@@ -14,4 +14,17 @@ public class GlobalExceptionHandler {
                 HttpStatus.NOT_FOUND.value(),  HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage());
                 return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleGeneralException(Exception e) {
+        ErrorResponse error = new ErrorResponse(LocalDateTime.now(),
+                                                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                                                HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(),
+                                                "An unexpected error occurred.");
+        return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+                                               
+    }
+
+
+    
 }
