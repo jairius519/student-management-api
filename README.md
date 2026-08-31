@@ -54,7 +54,6 @@ Example:
   "timestamp": "2026-08-22T15:30:00",
   "status": 404,
   "error": "Not Found",
-  "message": "Student not found with id: 10",
-  "path": "/students/10"
+  "message": "Student not found with id: 10"
 }
 
