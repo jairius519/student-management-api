@@ -20,7 +20,13 @@ public class StudentService {
     }
 
     public void deleteStudent(Long id) {
-        studentRepository.deleteById(id);
+        if (studentRepository.existsById(id)) {
+            studentRepository.deleteById(id);
+        }
+
+        else {
+            throw new ResourceNotFoundException("Student not found with id: " + id); // Throws exception if a student with the given ID does not exist
+        }
     }
 
     public Student getStudentById(Long id) {
