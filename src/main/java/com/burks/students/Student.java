@@ -12,6 +12,10 @@ public class Student {
     private String degree;
     private String major;
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
