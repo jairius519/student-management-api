@@ -25,7 +25,7 @@ public class StudentService {
         }
 
         else {
-            throw new ResourceNotFoundException("Student not found with id: " + id); // Throws exception if a student with the given ID does not exist
+            throw new ResourceNotFoundException("Student not found with id: " + id); // Throws exception if a student the given ID does not exist
         }
     }
 
@@ -35,16 +35,14 @@ public class StudentService {
     }
 
     public Student updateStudent(Long id, Student updatedStudent) {
-        Student existingStudent = studentRepository.findById(id).orElse(null);
-        if (existingStudent != null) {
+        Student existingStudent = studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Student not found with id: " + id)); // Throws exception if student with given ID is not found
+
             existingStudent.setName(updatedStudent.getName());
             existingStudent.setDegree(updatedStudent.getDegree());
             existingStudent.setMajor(updatedStudent.getMajor());
             return studentRepository.save(existingStudent);
-        }
-        else{
-            return null;
-        }
+        
 
     }
 
